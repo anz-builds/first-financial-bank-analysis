@@ -1,0 +1,73 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+
+DEFINE
+    MEASURE fact_branch_year[Deposits Adj] = SUM ( fact_branch_year[deposits_adjusted_000] )
+    MEASURE fact_branch_year[Deposits Reported] = SUM ( fact_branch_year[deposits_000] )
+    MEASURE fact_branch_year[FF Deposits] = CALCULATE ( [Deposits Adj], dim_owner[is_focus] = TRUE () )
+    MEASURE fact_branch_year[Market Deposits] = CALCULATE ( [Deposits Adj], REMOVEFILTERS ( dim_owner ) )
+    MEASURE fact_branch_year[FF Share] = DIVIDE ( [FF Deposits], [Market Deposits] )
+    MEASURE fact_branch_year[FF Share Reported Owner] =
+        DIVIDE (
+            CALCULATE (
+                [Deposits Adj],
+                USERELATIONSHIP ( fact_branch_year[reported_owner_id], dim_owner[owner_id] ),
+                dim_owner[is_focus] = TRUE ()
+            ),
+            [Market Deposits]
+        )
+    MEASURE fact_branch_year[FF Share As Reported] =
+        DIVIDE (
+            CALCULATE ( [Deposits Reported], dim_owner[is_focus] = TRUE () ),
+            CALCULATE ( [Deposits Reported], REMOVEFILTERS ( dim_owner ) )
+        )
+    MEASURE fact_branch_year[Organic Change pts] =
+        ( CALCULATE ( [FF Share], dim_year[year] = 2026 )
+            - CALCULATE ( [FF Share], dim_year[year] = 2016 ) ) * 100
+    MEASURE fact_branch_year[Acquired Change pts] =
+        ( CALCULATE ( [FF Share Reported Owner], dim_year[year] = 2026 )
+            - CALCULATE ( [FF Share Reported Owner], dim_year[year] = 2016 ) ) * 100
+            - [Organic Change pts]
+    MEASURE fact_branch_year[Organic Change As Reported pts] =
+        ( CALCULATE ( [FF Share As Reported], dim_year[year] = 2026 )
+            - CALCULATE ( [FF Share As Reported], dim_year[year] = 2016 ) ) * 100
+    MEASURE fact_branch_year[FF Rank 2026] =
+        VAR ffDep = CALCULATE ( [FF Deposits], dim_year[year] = 2026 )
+        RETURN
+            IF (
+                ffDep > 0,
+                COUNTROWS (
+                    FILTER (
+                        ALL ( dim_owner ),
+                        CALCULATE ( [Deposits Adj], dim_year[year] = 2026 ) > ffDep
+                    )
+                ) + 1
+            )
+    MEASURE fact_branch_year[Market Group] =
+        VAR share26 = CALCULATE ( [FF Share], dim_year[year] = 2026 )
+        VAR strong = [FF Rank 2026] <= 3 || share26 >= 0.10
+        VAR chg = [Organic Change pts]
+        RETURN
+            SWITCH (
+                TRUE (),
+                CALCULATE ( [FF Deposits], dim_year[year] = 2026 ) = 0, "Exited",
+                strong && chg < -0.25, "Defend",
+                strong, "Hold",
+                chg > 0.25, "Expand candidate",
+                chg < -0.25, "Watch",
+                "Flat, small"
+            )
+
+EVALUATE
+SUMMARIZECOLUMNS (
+    dim_market[market_name],
+    TREATAS ( { 2026 }, dim_year[year] ),
+    "FF Deposits", [FF Deposits],
+    "FF Share", [FF Share],
+    "Organic", [Organic Change pts],
+    "Acquired", [Acquired Change pts],
+    "As Reported", [Organic Change As Reported pts],
+    "Rank", [FF Rank 2026],
+    "Group", [Market Group]
+)
+ORDER BY [FF Deposits] DESC

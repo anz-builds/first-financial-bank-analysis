@@ -1,0 +1,57 @@
+market_id,market_name,market_type,states,counties
+CTY-17075,"Iroquois, IL (county)",County,IL,1
+CTY-17183,"Vermilion, IL (county)",County,IL,1
+CTY-18009,"Blackford, IN (county)",County,IN,1
+CTY-18023,"Clinton, IN (county)",County,IN,1
+CTY-18025,"Crawford, IN (county)",County,IN,1
+CTY-18031,"Decatur, IN (county)",County,IN,1
+CTY-18041,"Fayette, IN (county)",County,IN,1
+CTY-18049,"Fulton, IN (county)",County,IN,1
+CTY-18055,"Greene, IN (county)",County,IN,1
+CTY-18065,"Henry, IN (county)",County,IN,1
+CTY-18071,"Jackson, IN (county)",County,IN,1
+CTY-18075,"Jay, IN (county)",County,IN,1
+CTY-18077,"Jefferson, IN (county)",County,IN,1
+CTY-18079,"Jennings, IN (county)",County,IN,1
+CTY-18107,"Montgomery, IN (county)",County,IN,1
+CTY-18133,"Putnam, IN (county)",County,IN,1
+CTY-18135,"Randolph, IN (county)",County,IN,1
+CTY-18137,"Ripley, IN (county)",County,IN,1
+CTY-18139,"Rush, IN (county)",County,IN,1
+CTY-18143,"Scott, IN (county)",County,IN,1
+CTY-18155,"Switzerland, IN (county)",County,IN,1
+CTY-18161,"Union, IN (county)",County,IN,1
+CTY-18169,"Wabash, IN (county)",County,IN,1
+CTY-18177,"Wayne, IN (county)",County,IN,1
+CTY-21005,"Anderson, KY (county)",County,KY,1
+CTY-21073,"Franklin, KY (county)",County,KY,1
+CTY-21167,"Mercer, KY (county)",County,KY,1
+CTY-21223,"Trimble, KY (county)",County,KY,1
+CTY-39011,"Auglaize, OH (county)",County,OH,1
+CTY-39027,"Clinton, OH (county)",County,OH,1
+CTY-39037,"Darke, OH (county)",County,OH,1
+CTY-39071,"Highland, OH (county)",County,OH,1
+CTY-39107,"Mercer, OH (county)",County,OH,1
+CTY-39125,"Paulding, OH (county)",County,OH,1
+CTY-39135,"Preble, OH (county)",County,OH,1
+CTY-39143,"Sandusky, OH (county)",County,OH,1
+CTY-39161,"Van Wert, OH (county)",County,OH,1
+CTY-39169,"Wayne, OH (county)",County,OH,1
+CTY-39171,"Williams, OH (county)",County,OH,1
+MSA-10420,"Akron, OH",MSA,OH,2
+MSA-14020,"Bloomington, IN",MSA,IN,2
+MSA-15940,"Canton-Massillon, OH",MSA,OH,2
+MSA-16980,"Chicago-Naperville-Elgin, IL-IN",MSA,"IL, IN",13
+MSA-17140,"Cincinnati, OH-KY-IN",MSA,"IN, KY, OH",15
+MSA-17410,"Cleveland, OH",MSA,OH,6
+MSA-18020,"Columbus, IN",MSA,IN,1
+MSA-18140,"Columbus, OH",MSA,OH,10
+MSA-19430,"Dayton-Kettering-Beavercreek, OH",MSA,OH,3
+MSA-23060,"Fort Wayne, IN",MSA,IN,3
+MSA-24340,"Grand Rapids-Wyoming-Kentwood, MI",MSA,MI,5
+MSA-26900,"Indianapolis-Carmel-Greenwood, IN",MSA,IN,11
+MSA-28100,"Kankakee, IL",MSA,IL,1
+MSA-28450,"Kenosha, WI",MSA,WI,1
+MSA-29200,"Lafayette-West Lafayette, IN",MSA,IN,4
+MSA-30620,"Lima, OH",MSA,OH,1
+MSA-31140,"Louisville/Jefferson County, KY-IN",MSA,"IN, KY",12

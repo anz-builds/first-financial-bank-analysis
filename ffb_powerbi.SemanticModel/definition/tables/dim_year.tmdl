@@ -1,0 +1,24 @@
+table dim_year
+	lineageTag: 2becd013-a106-4f45-9ea1-df772047eea5
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 041cbe45-ad01-423d-8b49-d11801f0b9c1
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_year = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromColumns({Lines.FromBinary(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_year.csv"), null, null, 65001)}),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"year", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

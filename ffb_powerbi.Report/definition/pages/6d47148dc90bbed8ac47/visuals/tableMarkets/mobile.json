@@ -1,0 +1,138 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.9.0/schema.json",
+  "position": {
+    "x": 0,
+    "y": 712,
+    "z": 5000,
+    "height": 640,
+    "width": 324,
+    "tabOrder": 5000
+  },
+  "objects": {
+    "columnWidth": [
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "65D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "dim_market.market_name"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "48D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "dim_market.Market Group"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "48D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "fact_branch_year.FF Share 2026"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "43D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "fact_branch_year.Organic Change pts"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "29D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "fact_branch_year.FF Rank 2026"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "53D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "fact_branch_year.FF Deposits 2026 ($M)"
+        }
+      }
+    ],
+    "values": [
+      {
+        "properties": {
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "columnHeaders": [
+      {
+        "properties": {
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "total": [
+      {
+        "properties": {
+          "fontSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

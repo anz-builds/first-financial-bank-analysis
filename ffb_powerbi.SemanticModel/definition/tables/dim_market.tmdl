@@ -1,0 +1,74 @@
+table dim_market
+	lineageTag: 7b6af20d-8f7a-43f5-ac6c-0f2bd2eeae3b
+
+	column market_id
+		dataType: string
+		lineageTag: 752da0d0-427e-41c2-a1a2-57df0de2972c
+		summarizeBy: none
+		sourceColumn: market_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_name
+		dataType: string
+		lineageTag: f2049da9-648b-485b-872b-1cd64b6e4602
+		summarizeBy: none
+		sourceColumn: market_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_type
+		dataType: string
+		lineageTag: 150f8950-25bf-43e3-8fd2-0f96b3585097
+		summarizeBy: none
+		sourceColumn: market_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column states
+		dataType: string
+		lineageTag: ee176091-4d71-4e9e-819c-0949654570f1
+		summarizeBy: none
+		sourceColumn: states
+
+		annotation SummarizationSetBy = Automatic
+
+	column counties
+		dataType: int64
+		formatString: 0
+		lineageTag: c002cdf2-76d9-4ca2-9843-49cb6e134ed9
+		summarizeBy: none
+		sourceColumn: counties
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Defend / Hold / Expand candidate / Watch / Small and flat / Exited, from the Market Group measure. Blank for markets First Financial never served.
+	column 'Market Group' = [Market Group]
+		dataType: string
+		lineageTag: 02f730d5-f3aa-4aff-86b1-dc280707e4e4
+		summarizeBy: none
+		sortByColumn: 'Market Group Order'
+
+	/// Display order for Market Group (Defend, Watch, Expand candidate, Hold, Small and flat, Exited; blank last). ALLEXCEPT on market_id avoids a circular dependency with the Market Group column it sorts.
+	column 'Market Group Order' =
+			VAR g =
+			    CALCULATE ( fact_branch_year[Market Group], ALLEXCEPT ( dim_market, dim_market[market_id] ) )
+			RETURN
+			    SWITCH ( g, "Defend", 1, "Watch", 2, "Expand candidate", 3, "Hold", 4, "Small and flat", 5, "Exited", 6, 7 )
+		dataType: int64
+		isHidden
+		lineageTag: 68c187aa-6f67-4e40-9aef-2f85a1f898dc
+		summarizeBy: none
+
+	partition dim_market = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_market.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"market_id", type text}, {"market_name", type text}, {"market_type", type text}, {"states", type text}, {"counties", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

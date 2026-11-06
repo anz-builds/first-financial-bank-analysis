@@ -1,0 +1,71 @@
+table dim_county
+	lineageTag: 7d4ab0d9-cf18-47cf-989f-bf3889a706ba
+
+	column county_fips
+		dataType: int64
+		formatString: 0
+		lineageTag: a81b4334-54f9-4771-a3c0-6770cfb2e17e
+		summarizeBy: none
+		sourceColumn: county_fips
+
+		annotation SummarizationSetBy = Automatic
+
+	column county_name
+		dataType: string
+		lineageTag: 3efcc831-4328-4c5c-8a67-f7eaf069274f
+		summarizeBy: none
+		sourceColumn: county_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 31aae6e6-b000-40eb-9a41-d4871113a6e0
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column map_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 008df2d1-d626-47c3-8551-89e275934878
+		summarizeBy: none
+		sourceColumn: map_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_id
+		dataType: string
+		isHidden
+		lineageTag: 08b89b55-265b-4a48-923b-3d89f035373a
+		summarizeBy: none
+		sourceColumn: market_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_name
+		dataType: string
+		isHidden
+		lineageTag: b940dd38-7a87-44ee-8da9-28eb71b16bb7
+		summarizeBy: none
+		sourceColumn: market_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_county = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_county.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"county_fips", Int64.Type}, {"county_name", type text}, {"state", type text}, {"map_year", Int64.Type}, {"market_id", type text}, {"market_name", type text}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

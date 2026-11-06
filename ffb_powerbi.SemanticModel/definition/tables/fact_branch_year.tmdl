@@ -1,0 +1,399 @@
+table fact_branch_year
+	lineageTag: c383a5cb-da59-48c4-a3b3-473fd56220e7
+
+	measure 'Deposits Adj' = SUM ( fact_branch_year[deposits_adjusted_000] )
+		lineageTag: 5214b1c3-ac33-4e03-9774-ffdd9a52de08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deposits Reported' = SUM ( fact_branch_year[deposits_000] )
+		formatString: 0
+		lineageTag: 4fdbc442-33cf-4602-81ef-a61a3dd0bfb0
+
+	measure 'FF Deposits' = CALCULATE ( [Deposits Adj], dim_owner[is_focus] = TRUE () )
+		lineageTag: 0710784a-556f-4684-b54d-6d2a54381d49
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Deposits' = CALCULATE ( [Deposits Adj], REMOVEFILTERS ( dim_owner ) )
+		lineageTag: 2515caba-1526-490f-b802-5a597f075a21
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FF Share' = DIVIDE ( [FF Deposits], [Market Deposits] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3f9ffce2-8a80-404f-bcc5-890cfe9ef4bb
+
+	measure 'FF Share Reported Owner' = ```
+			
+			        DIVIDE (
+			            CALCULATE (
+			                [Deposits Adj],
+			                USERELATIONSHIP ( fact_branch_year[reported_owner_id], dim_owner[owner_id] ),
+			                dim_owner[is_focus] = TRUE ()
+			            ),
+			            [Market Deposits]
+			        )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1ea7961e-7362-4309-8b43-efd65f895d16
+
+	measure 'FF Share As Reported' = ```
+			
+			        DIVIDE (
+			            CALCULATE ( [Deposits Reported], dim_owner[is_focus] = TRUE () ),
+			            CALCULATE ( [Deposits Reported], REMOVEFILTERS ( dim_owner ) )
+			        )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a0055250-7fdc-4a88-bf34-1467adfbfb34
+
+	measure 'Organic Change pts' = ```
+			
+			        ( CALCULATE ( [FF Share], dim_year[year] = 2026 )
+			            - CALCULATE ( [FF Share], dim_year[year] = 2016 ) ) * 100
+			```
+		formatString: +0.00;-0.00;0.00
+		lineageTag: b339be88-4389-4762-9cd9-b07b4ea2fea0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Acquired Change pts' = ```
+			
+			        ( CALCULATE ( [FF Share Reported Owner], dim_year[year] = 2026 )
+			            - CALCULATE ( [FF Share Reported Owner], dim_year[year] = 2016 ) ) * 100
+			            - [Organic Change pts]
+			```
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 16c771ee-4ce1-4f54-be49-14b17d286c78
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Organic Change As Reported pts' = ```
+			
+			        ( CALCULATE ( [FF Share As Reported], dim_year[year] = 2026 )
+			            - CALCULATE ( [FF Share As Reported], dim_year[year] = 2016 ) ) * 100
+			```
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 22806aa7-102e-457f-8e2b-741af58e26a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FF Rank 2026' = ```
+			
+			        VAR ffDep = CALCULATE ( [FF Deposits], dim_year[year] = 2026 )
+			        RETURN
+			            IF (
+			                ffDep > 0,
+			                COUNTROWS (
+			                    FILTER (
+			                        ALL ( dim_owner ),
+			                        CALCULATE ( [Deposits Adj], dim_year[year] = 2026 ) > ffDep
+			                    )
+			                ) + 1
+			            )
+			```
+		formatString: 0
+		lineageTag: c17aeffd-1b8c-4742-9fe9-351d4df8c3cd
+
+	measure 'Market Group' =
+			VAR everFF = CALCULATE ( [FF Deposits], REMOVEFILTERS ( dim_year ) )
+			VAR share26 = CALCULATE ( [FF Share], dim_year[year] = 2026 )
+			VAR strong = [FF Rank 2026] <= 3 || share26 >= 0.10
+			VAR chg = [Organic Change pts]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        NOT ( everFF > 0 ), BLANK (),
+			        NOT ( CALCULATE ( [FF Deposits], dim_year[year] = 2026 ) > 0 ), "Exited",
+			        strong && chg < -0.25, "Defend",
+			        strong, "Hold",
+			        chg > 0.25, "Expand candidate",
+			        chg < -0.25, "Watch",
+			        "Small and flat"
+			    )
+		lineageTag: f10502ec-50b9-4aec-bd28-5ef6c2b84563
+
+	/// First Financial's 2026 deposit share (adjusted deposits, 2026 owner).
+	measure 'FF Share 2026' = CALCULATE ( [FF Share], dim_year[year] = 2026 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ebe7787a-e0e2-4b35-90d6-ed499bc24d6f
+
+	/// First Financial's 2026 adjusted deposits in millions of dollars.
+	measure 'FF Deposits 2026 ($M)' = DIVIDE ( CALCULATE ( [FF Deposits], dim_year[year] = 2026 ), 1000 )
+		formatString: #,0
+		lineageTag: 8c12860a-4a46-4a68-bf49-4fbe33c338d7
+
+	/// Organic share change 2016-2026 in the Cincinnati MSA, in percentage points.
+	measure 'Cincinnati Organic Change pts' = CALCULATE ( [Organic Change pts], dim_market[market_id] = "MSA-17140" )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 6f53222e-c408-47ae-9885-61c683e95509
+
+	/// Markets where First Financial is strong (top 3 or 10%+ share) and lost more than 0.25 pts organically.
+	measure 'Defend Markets' = COUNTROWS ( FILTER ( VALUES ( dim_market[market_id] ), [Market Group] = "Defend" ) )
+		formatString: 0
+		lineageTag: 20c88030-0453-4a95-90d7-6d2fde09a604
+
+	/// Markets where First Financial had branches in 2016-2025 and none with deposits in 2026.
+	measure 'Exited Markets' = COUNTROWS ( FILTER ( VALUES ( dim_market[market_id] ), [Market Group] = "Exited" ) )
+		formatString: 0
+		lineageTag: 8e4b7658-9c04-4ec5-ae78-f7233dbf3639
+
+	/// Each owner's share of market deposits (adjusted deposits, 2026 owner).
+	measure 'Owner Share' = DIVIDE ( [Deposits Adj], [Market Deposits] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 733a4f8f-1f73-402f-83d8-71cea698c79c
+
+	/// Owner's share change 2016-2026 in percentage points.
+	measure 'Owner Share Change pts' =
+			( CALCULATE ( [Owner Share], dim_year[year] = 2026 )
+			    - CALCULATE ( [Owner Share], dim_year[year] = 2016 ) ) * 100
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 4fa84eb2-6aff-4168-a528-e13bfd1dfc1e
+
+	/// Share gained 2016-2026 by competitors that gained (First Financial left out).
+	measure 'Competitor Gain pts' =
+			VAR chg = [Owner Share Change pts]
+			RETURN
+			    IF ( chg > 0 && SELECTEDVALUE ( dim_owner[is_focus] ) = FALSE (), chg )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: c80bb3ec-50b3-48c8-8764-e178a86a0932
+
+	/// Organic change on adjusted deposits, shown only where the adjustments move it by 0.15 pts or more.
+	measure 'Organic pts Where Adjusted' = IF ( ABS ( [Organic Change pts] - [Organic Change As Reported pts] ) >= 0.15, [Organic Change pts] )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 60db5497-fdc9-430d-86ca-330c4bfd3849
+
+	/// Organic change on deposits as reported to the FDIC, shown only where the adjustments move it by 0.15 pts or more.
+	measure 'As Reported pts Where Adjusted' = IF ( ABS ( [Organic Change pts] - [Organic Change As Reported pts] ) >= 0.15, [Organic Change As Reported pts] )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: c20ff197-cf4e-45ac-a38f-30e8c9708828
+
+	/// Number of branch-year records.
+	measure 'Branch-Year Rows' = COUNTROWS ( fact_branch_year )
+		formatString: #,0
+		lineageTag: ff8b20b5-93d9-40a3-b9c3-4598de9d0a54
+
+	/// Deposits removed by the BPI cap (D9), billions of dollars summed over 2016-2026.
+	measure 'Removed by Cap ($B)' = DIVIDE ( SUM ( fact_branch_year[deposits_000] ) - SUM ( fact_branch_year[deposits_capped_000] ), 1000000 )
+		formatString: #,0.0
+		lineageTag: 6a589668-b6b9-48ee-bdc6-6d066b82041e
+
+	/// Deposits removed by review exclusions (D9) and manual booking caps (D10, O17, O19), billions of dollars summed over 2016-2026.
+	measure 'Removed by Review and Manual Caps ($B)' = DIVIDE ( SUM ( fact_branch_year[deposits_capped_000] ) - SUM ( fact_branch_year[deposits_adjusted_000] ), 1000000 )
+		formatString: #,0.0
+		lineageTag: d659c163-5dd1-4ffd-98bc-e2a29fdcc4bc
+
+	/// Median 2026 First Financial share across the markets plotted on the Page 1 scatter (x reference line).
+	measure 'Median FF Share 2026' =
+			MEDIANX (
+			    FILTER (
+			        VALUES ( dim_market[market_id] ),
+			        NOT ISBLANK ( [FF Share 2026] ) && NOT ISBLANK ( [Organic Change pts] )
+			    ),
+			    [FF Share 2026]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bb8b1485-44f7-4343-9b0e-1637ff88da62
+
+	/// Median organic share change 2016-2026 (pts) across the markets plotted on the Page 1 scatter (y reference line).
+	measure 'Median Organic Change pts' =
+			MEDIANX (
+			    FILTER (
+			        VALUES ( dim_market[market_id] ),
+			        NOT ISBLANK ( [FF Share 2026] ) && NOT ISBLANK ( [Organic Change pts] )
+			    ),
+			    [Organic Change pts]
+			)
+		formatString: +0.00;-0.00;0.00
+		lineageTag: dc762a9f-3a99-4cf1-bb67-b47d15db09dd
+
+	/// Dynamic title for the Page 2 share trend chart; names the selected market.
+	measure 'Share Trend Title' = "First Financial Deposit Share by Year, 2016–2026: " & SELECTEDVALUE ( dim_market[market_name], "All Markets Combined" )
+		lineageTag: 3464bcfe-7981-4e2f-920f-25e1126827b2
+
+	/// Dynamic title for the Page 2 competitor gains chart; names the selected market.
+	measure 'Competitor Gains Title' = "Who Gained Share, 2016–2026: " & SELECTEDVALUE ( dim_market[market_name], "All Markets Combined" )
+		lineageTag: 8f5056ae-8ace-47fb-aee1-5883c0649c9f
+
+	/// Card subtitle: median organic change across plotted markets, ignoring the market slicer.
+	measure 'Card Context Organic' = "Median market: " & FORMAT ( CALCULATE ( [Median Organic Change pts], REMOVEFILTERS ( dim_market ) ), "+0.00;-0.00;0.00" ) & " pts"
+		lineageTag: ae92fab4-b9a1-49b9-b9b1-16a3348dc54c
+
+	/// Card subtitle: median 2026 First Financial share across plotted markets, ignoring the market slicer.
+	measure 'Card Context Share' = "Median market: " & FORMAT ( CALCULATE ( [Median FF Share 2026], REMOVEFILTERS ( dim_market ) ), "0.00%" )
+		lineageTag: bbef74a4-cf97-42e7-a906-ea524b9e1844
+
+	column year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ce615f6d-8c07-4eb9-9164-413e459e44bd
+		summarizeBy: none
+		sourceColumn: year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 410f12c8-a76c-4c92-a85f-0d9d9d838d93
+		summarizeBy: none
+		sourceColumn: branch_id
+
+		annotation SummarizationSetBy = User
+
+	column cert
+		dataType: int64
+		formatString: 0
+		lineageTag: 920d30ae-ed24-490c-9448-23634307969d
+		summarizeBy: none
+		sourceColumn: cert
+
+		annotation SummarizationSetBy = User
+
+	column county_fips
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b4aa48e9-4f6a-4048-b86f-023a54d9abf2
+		summarizeBy: none
+		sourceColumn: county_fips
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_id
+		dataType: string
+		isHidden
+		lineageTag: 7f96bb1c-de27-4309-9778-3b3c71bbad24
+		summarizeBy: none
+		sourceColumn: market_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposits_000
+		dataType: int64
+		formatString: 0
+		lineageTag: 746da398-4947-4a19-a35b-32a1449bb2c6
+		summarizeBy: sum
+		sourceColumn: deposits_000
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_main_office
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fde5d7c1-d23c-49b2-84e2-66ed25a214d9
+		summarizeBy: none
+		sourceColumn: is_main_office
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_class
+		dataType: string
+		lineageTag: e6d4d943-bc03-44ec-83dc-9e10b8b87d6a
+		summarizeBy: none
+		sourceColumn: bank_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_savings_institution
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f45a290-5199-4788-9086-8b5557c16ac1
+		summarizeBy: none
+		sourceColumn: is_savings_institution
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_owner_id
+		dataType: string
+		isHidden
+		lineageTag: 2933b78c-f249-4081-9e66-f0a8bdb41d8c
+		summarizeBy: none
+		sourceColumn: reported_owner_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column restated_owner_id
+		dataType: string
+		isHidden
+		lineageTag: 294c53fd-b359-4824-85bd-6910eb7cea78
+		summarizeBy: none
+		sourceColumn: restated_owner_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column restate_method
+		dataType: string
+		lineageTag: ff5cbc37-eea6-46a5-9555-5280fa27136b
+		summarizeBy: none
+		sourceColumn: restate_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposits_capped_000
+		dataType: double
+		lineageTag: 9fc27c23-e603-4427-b6d9-2d6181325ac4
+		summarizeBy: sum
+		sourceColumn: deposits_capped_000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column booking_status
+		dataType: string
+		lineageTag: 3c730edb-0762-4dd3-a893-7633fafe5f57
+		summarizeBy: none
+		sourceColumn: booking_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column deposits_adjusted_000
+		dataType: double
+		lineageTag: e604aca1-4f41-4740-8dd0-7080fb8a532c
+		summarizeBy: sum
+		sourceColumn: deposits_adjusted_000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Display label for booking_status (capitalized). The source value from clean.py stays unchanged.
+	column 'Booking Status' =
+			SWITCH (
+			    fact_branch_year[booking_status],
+			    "not flagged", "Not flagged",
+			    "not reviewed", "Not reviewed",
+			    "kept", "Kept",
+			    "excluded", "Excluded",
+			    "manual booking cap", "Manual booking cap",
+			    fact_branch_year[booking_status]
+			)
+		dataType: string
+		lineageTag: 70b5edcb-c294-48da-b2e5-7d7cf342b8a1
+		summarizeBy: none
+
+	partition fact_branch_year = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/fact_branch_year.csv"), [Delimiter = ",", Columns = 15, Encoding = 65001]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"year", Int64.Type}, {"branch_id", Int64.Type}, {"cert", Int64.Type}, {"county_fips", Int64.Type}, {"market_id", type text}, {"deposits_000", Int64.Type}, {"is_main_office", type logical}, {"bank_class", type text}, {"is_savings_institution", type logical}, {"reported_owner_id", type text}, {"restated_owner_id", type text}, {"restate_method", type text}, {"deposits_capped_000", type number}, {"booking_status", type text}, {"deposits_adjusted_000", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

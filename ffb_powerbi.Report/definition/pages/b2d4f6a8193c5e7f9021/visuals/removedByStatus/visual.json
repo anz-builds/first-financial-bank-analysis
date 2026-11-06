@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "removedByStatus",
+  "position": {
+    "x": 1192,
+    "y": 152,
+    "z": 2000,
+    "height": 400,
+    "width": 696,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_branch_year"
+                    }
+                  },
+                  "Property": "Booking Status"
+                }
+              },
+              "queryRef": "fact_branch_year.Booking Status",
+              "nativeQueryRef": "Booking Status",
+              "displayName": "Booking Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_branch_year"
+                    }
+                  },
+                  "Property": "Branch-Year Rows"
+                }
+              },
+              "queryRef": "fact_branch_year.Branch-Year Rows",
+              "nativeQueryRef": "Branch-Year Rows",
+              "displayName": "Branch-Years"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_branch_year"
+                    }
+                  },
+                  "Property": "Removed by Cap ($B)"
+                }
+              },
+              "queryRef": "fact_branch_year.Removed by Cap ($B)",
+              "nativeQueryRef": "Removed by Cap ($B)",
+              "displayName": "Removed by Cap ($ Billions)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_branch_year"
+                    }
+                  },
+                  "Property": "Removed by Review and Manual Caps ($B)"
+                }
+              },
+              "queryRef": "fact_branch_year.Removed by Review and Manual Caps ($B)",
+              "nativeQueryRef": "Removed by Review and Manual Caps ($B)",
+              "displayName": "Removed by Review or Manual Cap ($ Billions)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "241.55926386769286D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_branch_year.Removed by Review and Manual Caps ($B)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170.09725615303907D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_branch_year.Booking Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.55928130775362D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_branch_year.Removed by Cap ($B)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.34504301492944D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_branch_year.Branch-Year Rows"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Deposits Removed, Summed Over 2016–2026 (All Markets)'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d129bcb3058d04b64d07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_branch_year"
+              }
+            },
+            "Property": "Booking Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7f7eaaac6112a03c17a3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_branch_year"
+              }
+            },
+            "Property": "Branch-Year Rows"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "debe4a40135372dc14e4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_branch_year"
+              }
+            },
+            "Property": "Removed by Cap ($B)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "810b79c307db7c053553",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_branch_year"
+              }
+            },
+            "Property": "Removed by Review and Manual Caps ($B)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

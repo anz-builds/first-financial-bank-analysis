@@ -1,0 +1,21 @@
+relationship AutoDetected_bbe2a42b-344e-4b84-b632-1840e8e59a42
+	fromColumn: fact_branch_year.county_fips
+	toColumn: dim_county.county_fips
+
+relationship b31ba6bc-988c-11fe-2597-ecaf7aa084a6
+	fromColumn: fact_branch_year.year
+	toColumn: dim_year.year
+
+relationship 5aa68c22-4f07-a458-f1ab-703353a620e2
+	fromColumn: fact_branch_year.market_id
+	toColumn: dim_market.market_id
+
+relationship f242f06c-e679-8522-b9d1-fbe25270f761
+	fromColumn: fact_branch_year.restated_owner_id
+	toColumn: dim_owner.owner_id
+
+relationship 795cd5df-322b-a755-1b12-fb5a57d3ad38
+	isActive: false
+	fromColumn: fact_branch_year.reported_owner_id
+	toColumn: dim_owner.owner_id
+

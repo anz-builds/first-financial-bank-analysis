@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bookingGlossary",
+  "position": {
+    "x": 1192,
+    "y": 576,
+    "z": 3000,
+    "height": 472,
+    "width": 696,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What the Booking Status Means",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Some banks record deposits at one office instead of the branches where customers bank. Left in, those balances make one bank look huge in that market and shrink everyone else's share. Each row in the table counts branch-years: one branch in one year.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Flagged: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "the branch looked like a booking office: very large for its market, or moving 5% or more of the market's deposits in one year.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Not flagged: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "a normal branch. No change.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Not reviewed: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "flagged, but it moves First Financial's 2016–2026 change by less than 0.5 pts, so it was left as filed.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Kept: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "flagged, checked by hand, and judged to be real local deposits. No change.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Excluded: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "flagged, checked by hand, and judged to be booked centrally. Removed.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Manual booking cap: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "held to a documented level instead of removed, for example First Financial's own Cincinnati booking office.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "BPI cap: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "in Canton, Chicago, Cincinnati, Cleveland and Columbus OH, any branch bigger than 3x the market's 99th-percentile branch is cut to that size, whatever its status.",
+                    "textStyle": {
+                      "fontSize": "10.5pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,522 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "fact_branch_year.cincinnati_organic_change_pts": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Cincinnati Organic Change pts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cincinnati Organic Share Change, 2016–2026 (pts)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.defend_markets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Defend Markets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Defend Markets": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.exited_markets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Exited Markets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Markets Exited": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_share_2026": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Share 2026"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "First Financial Share, 2026": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Share 2026": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.organic_change_pts": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Organic Change pts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Organic Share Change, 2016–2026 (pts)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Organic Change (pts)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Organic Change, 2016–2026 (pts)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_rank_2026": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Rank 2026"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Rank Among Owners, 2026": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_deposits_2026_m": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Deposits 2026 ($M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Deposits ($ Millions)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.competitor_gain_pts": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Competitor Gain pts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Share Gained, 2016–2026 (pts)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.market_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Market Group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Branches First Financial owns today": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_share_reported_owner": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Share Reported Owner"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "What First Financial owned that year": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.ff_share_as_reported": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "FF Share As Reported"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Today's branches, unadjusted FDIC figures": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.organic_pts_where_adjusted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Organic pts Where Adjusted"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Adjusted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.as_reported_pts_where_adjusted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "As Reported pts Where Adjusted"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "As reported": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.booking_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "booking_status"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "fact_branch_year.branchyear_rows": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Branch-Year Rows"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Branch-Years": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.removed_by_cap_b": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Removed by Cap ($B)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Removed by Cap ($ Billions)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.removed_by_review_and_manual_caps_b": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Removed by Review and Manual Caps ($B)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Removed by Review or Manual Cap ($ Billions)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_market.market_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_market",
+			          "ConceptualProperty": "market_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Market": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_market.market_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_market",
+			          "ConceptualProperty": "Market Group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_owner.owner_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_owner",
+			          "ConceptualProperty": "owner_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Owner": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_year.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_year",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Year": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_branch_year.booking_status1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact_branch_year",
+			          "ConceptualProperty": "Booking Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Booking Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

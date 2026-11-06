@@ -1,0 +1,48 @@
+table dim_owner
+	lineageTag: 20dd343d-1150-4942-9cae-4f508799e0f8
+
+	column owner_id
+		dataType: string
+		lineageTag: cb5d2f76-95d3-4ea6-abc5-9fbb6c63117d
+		summarizeBy: none
+		sourceColumn: owner_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_name
+		dataType: string
+		lineageTag: 02ac4a51-7446-4538-89ff-7a49578ab906
+		summarizeBy: none
+		sourceColumn: owner_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_type
+		dataType: string
+		lineageTag: 041fc2da-85eb-46c6-9133-2f3c4842c4df
+		summarizeBy: none
+		sourceColumn: owner_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_focus
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8ee86367-789e-4397-8d8a-32f7aea00e17
+		summarizeBy: none
+		sourceColumn: is_focus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_owner = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_owner.csv"), [Delimiter = ",", Columns = 4, Encoding = 65001]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"owner_id", type text}, {"owner_name", type text}, {"owner_type", type text}, {"is_focus", type logical}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,8 @@
+data/raw/
+*.db
+__pycache__/
+*.db-journal
+notes/
+Claude outputs/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
