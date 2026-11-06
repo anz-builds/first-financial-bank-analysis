@@ -6,6 +6,7 @@ This project answers that question for all 51 local markets the bank served from
 **Bottom Line:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, despite the markets growing. Its home market, Cincinnati, is holding steady. 
 
 **Recommendation:** Defend the 9 markets where it is still strong but slipping.
+
 ## Contents
 - [Findings](#findings)
 - [How the Markets Are Grouped](#how-the-markets-are-grouped)
@@ -16,6 +17,8 @@ This project answers that question for all 51 local markets the bank served from
 - [Data Gaps, Assumptions, and Limitations](#data-gaps-assumptions-and-limitations)
 - [How AI Was Used](#how-ai-was-used)
 - [How to Run](#how-to-run)
+
+---
 
 **Dashboard:** [View the live report in Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjc3NTVhNTMtYzNlMS00MDIyLTkzYjMtMzhmZjg0YTdmNDRhIiwidCI6IjVhMmZlNzJiLTQ4YWEtNGZlZi1hZTg3LTMzM2EzNGQ3ZjUwZCJ9&pageName=6d47148dc90bbed8ac47). 
 - Source: `ffb_powerbi.pbip` in this repo.
@@ -112,7 +115,7 @@ All judgements calls below and why:
 - **Alternative considered: the FDIC's September 22, 2026 proposed rule.** It would spread a bank's centrally booked deposits across markets by population ([Federal Register](https://www.federalregister.gov/documents/2026/09/22/2026-19308/merger-transactions)). I didn't use it because it's a proposal and it covers only the FDIC's own merger reviews.
 - **Thrift deposits count at 100%.** Thrifts are savings banks and savings and loans. The Fed's first screen counts their deposits at 50% ([Fed FAQ, Q4–Q5](https://www.federalreserve.gov/bankinforeg/competitive-effects-mergers-acquisitions-faqs.htm)). Thrifts held only 4.6% of deposits in 2016 and 2.0% in 2026, so I didn't weight them. Four county markets have a high thrift share, where weighting would matter: Fulton, IN (48.0%), Greene, IN (47.5%), Van Wert, OH (44.5%) and Fayette, IN (35.2%).
 
-*Note: The full decisions log and research archive (104 sources, 27 sourced claims) are kept outside this repo. If you’d like to see how a specific call was made, or want to talk through the method, email me at [[email removed]] and I’ll send the relevant entries.* 
+*Note: The full decisions log and research archive (104 sources, 27 sourced claims) are kept outside this repo. If you’d like to see how a specific call was made, or want to talk through the method--please reach out, and I’ll send the relevant entries.* 
 
 ## Booking Review
 
