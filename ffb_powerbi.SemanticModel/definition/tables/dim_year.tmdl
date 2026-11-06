@@ -14,7 +14,7 @@ table dim_year
 		mode: import
 		source =
 				let
-				  Source = Table.FromColumns({Lines.FromBinary(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_year.csv"), null, null, 65001)}),
+				  Source = Table.FromColumns({Lines.FromBinary(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/default/data/clean/dim_year.csv"), null, null, 65001)}),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"year", Int64.Type}})
 				in

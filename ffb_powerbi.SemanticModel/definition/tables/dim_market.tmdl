@@ -64,7 +64,7 @@ table dim_market
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_market.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001]),
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/default/data/clean/dim_market.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"market_id", type text}, {"market_name", type text}, {"market_type", type text}, {"states", type text}, {"counties", Int64.Type}})
 				in

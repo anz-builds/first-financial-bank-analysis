@@ -61,7 +61,7 @@ table dim_county
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_county.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001]),
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/default/data/clean/dim_county.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"county_fips", Int64.Type}, {"county_name", type text}, {"state", type text}, {"map_year", Int64.Type}, {"market_id", type text}, {"market_name", type text}})
 				in

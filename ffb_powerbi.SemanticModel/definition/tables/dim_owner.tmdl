@@ -38,7 +38,7 @@ table dim_owner
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/dim_owner.csv"), [Delimiter = ",", Columns = 4, Encoding = 65001]),
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/default/data/clean/dim_owner.csv"), [Delimiter = ",", Columns = 4, Encoding = 65001]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"owner_id", type text}, {"owner_name", type text}, {"owner_type", type text}, {"is_focus", type logical}})
 				in

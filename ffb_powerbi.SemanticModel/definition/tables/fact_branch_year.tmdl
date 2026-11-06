@@ -389,7 +389,7 @@ table fact_branch_year
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/main/data/clean/fact_branch_year.csv"), [Delimiter = ",", Columns = 15, Encoding = 65001]),
+				  Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/anz-builds/first-financial-bank-analysis/default/data/clean/fact_branch_year.csv"), [Delimiter = ",", Columns = 15, Encoding = 65001]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"year", Int64.Type}, {"branch_id", Int64.Type}, {"cert", Int64.Type}, {"county_fips", Int64.Type}, {"market_id", type text}, {"deposits_000", Int64.Type}, {"is_main_office", type logical}, {"bank_class", type text}, {"is_savings_institution", type logical}, {"reported_owner_id", type text}, {"restated_owner_id", type text}, {"restate_method", type text}, {"deposits_capped_000", type number}, {"booking_status", type text}, {"deposits_adjusted_000", type number}})
 				in

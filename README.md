@@ -1,12 +1,14 @@
 # First Financial Deposit Market Share, 2016–2026
+*Where is First Financial Bank losing deposit share to competitors, and where should it defend or expand?* 
 
-Where is First Financial Bank losing deposit share to competitors, and where should it defend or expand? This project answers that question for all 51 local markets the bank served from 2016 to 2026, using FDIC branch deposit data and a Power BI report.
+This project answers that question for all 51 local markets the bank served from 2016 to 2026, using FDIC branch deposit data and a Power BI report.
 
-**In short:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, even though those markets grew. Its home market, Cincinnati, is holding steady. The recommendation is to defend the 9 markets where it is still strong but slipping.
+**Bottom Line:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, despite the markets growing. Its home market, Cincinnati, is holding steady. 
 
-**Dashboard:** [View the live report in Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjc3NTVhNTMtYzNlMS00MDIyLTkzYjMtMzhmZjg0YTdmNDRhIiwidCI6IjVhMmZlNzJiLTQ4YWEtNGZlZi1hZTg3LTMzM2EzNGQ3ZjUwZCJ9&pageName=6d47148dc90bbed8ac47). The source is `ffb_powerbi.pbip` in this repo.
+**Recommendation:** Defend the 9 markets where it is still strong but slipping.
 
-**On a phone:** the report has a phone layout, but the public link always opens the desktop layout. Publish to web doesn't support phone layouts ([Microsoft Learn](https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web)). The phone layout shows only in the Power BI mobile app, for viewers who have access to the report. The screenshots below show it.
+**Dashboard:** [View the live report in Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjc3NTVhNTMtYzNlMS00MDIyLTkzYjMtMzhmZjg0YTdmNDRhIiwidCI6IjVhMmZlNzJiLTQ4YWEtNGZlZi1hZTg3LTMzM2EzNGQ3ZjUwZCJ9&pageName=6d47148dc90bbed8ac47). 
+- Source: `ffb_powerbi.pbip` in this repo.
 
 ![Overview page: a scatter of First Financial's 2026 share against its share change since 2016, one dot per market, with median lines, three summary cards and a table of markets by group](reports/figures/overview.png)
 
@@ -14,20 +16,26 @@ Where is First Financial Bank losing deposit share to competitors, and where sho
 
 ![How the Data Was Adjusted page: bars comparing adjusted and as-reported share change for the 10 markets the adjustments move most, a table of deposits removed by booking status, and plain-language definitions](reports/figures/how-the-data-was-adjusted.png)
 
-**Phone layout**
+**Mobile/Tablet View:** the report has a phone layout, but the public link always opens the desktop layout. 
+
+As *"Publish to Web"* doesn't support phone layouts ([Microsoft Learn](https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web)). The mobile layout shows only in the Power BI mobile app, as well as the preview when opened in the desktop app editor. 
+
+**Phone Layout Screenshots:**
 
 ![Phone layout, three screens side by side. Overview: the question header, a Cincinnati organic change card (+0.43 pts) and a Defend markets card (9). Market Detail: the market picker set to Cincinnati and cards for 2026 share (6.94%) and organic change (+0.43 pts). How the Data Was Adjusted: the header and the adjusted vs as-reported bar chart by market](reports/figures/mobile-dashboard.png)
 
-## Findings
+## Context/Definitions:
+- Share is First Financial's slice of all bank deposits in a market. Changes are in percentage points (pts): going from 10% to 9% is −1 pt. 
+- Every change covers 2016 to 2026 and counts only the branches First Financial owns today, so buying another bank doesn't count as a gain. 
+- Deposits that banks record at one office instead of where customers bank are adjusted out (see: [Decisions](##Decisions)). Figures without a link come from the FDIC data in this repo: `reports/tables/`, written by `analyze.py`.
 
-Share is First Financial's slice of all bank deposits in a market. Changes are in percentage points (pts): going from 10% to 9% is −1 pt. Every change covers 2016 to 2026 and counts only the branches First Financial owns today, so buying another bank doesn't count as a gain. Deposits that banks record at one office instead of where customers bank are adjusted out (see Decisions). Figures come from `reports/tables/`, written by `analyze.py`.
-
-- **The biggest losses are in the former MainSource markets, and they started after the 2018 merger.** MainSource was an Indiana bank First Financial bought in 2018. Jay County, IN fell from 31.0% to 16.0% (−15.04 pts), Fayette, IN from 22.4% to 14.0% (−8.41) and Greene, IN from 18.8% to 11.1% (−7.66). All three are markets where First Financial still ranks in the top 5.
+## Findings:
+- **The biggest losses are in the former MainSource markets, and they started after the 2018 merger.** MainSource was an Indiana bank First Financial bought in 2018 ([FFBC investor presentation, May 2026](https://www.sec.gov/Archives/edgar/data/708955/000070895526000098/a8k52226investpresent.htm)). Jay County, IN fell from 31.0% to 16.0% (−15.04 pts), Fayette, IN from 22.4% to 14.0% (−8.41) and Greene, IN from 18.8% to 11.1% (−7.66). All three are markets where First Financial still ranks in the top 5.
 - **Local community banks took that share, not the big national banks.** First Berne gained 15.6 pts in Jay. Owen Financial (+10.0) and Farmers & Mechanics (+9.4) gained in Greene, and Union Savings (+5.8) and FCN (+4.3) in Fayette. First Farmers gained 7.4 in Wabash, IN. In Decatur, IN, Napoleon Bancorp gained 13.6 and Bancorp of Southern Indiana, which had no deposits there in 2016, now holds 12.3%.
 - **These markets grew while First Financial shrank.** Jay's total deposits grew 78% while First Financial's fell 8%. In Louisville, the market grew 87% and First Financial's deposits fell 22%. First Financial is losing ground in growing markets, not in shrinking towns.
 - **Cincinnati, the home market, is roughly holding.** First Financial went from 6.51% to 6.94% (+0.43 pts) and ranks 5th. As reported to the FDIC, the gain looks bigger (+0.96), because the bank books deposits from other markets at its Cincinnati offices.
 - **Every exit was a branch closure, not a sale.** First Financial left 9 markets by closing 10 branches. Five of the exits came right after 2017, around the MainSource merger.
-- **The 2025–2026 drop in Cleveland and Akron is mostly a bookkeeping move, not customers leaving.** After First Financial bought Westfield Bank, an Ohio bank (deal closed November 3, 2025), Westfield's deposits were moved onto the books of a Cincinnati office. This project takes that block out of Cincinnati, so it shows up as a loss in the markets the money was recorded in before.
+- **The 2025–2026 drop in Cleveland and Akron is mostly a bookkeeping move, not customers leaving.** After First Financial bought Westfield Bank, an Ohio bank (deal closed November 3, 2025; [8-K](https://www.sec.gov/Archives/edgar/data/708955/000070895525000105/ex991westfieldclosingannou.htm)), Westfield's deposits were moved onto the books of a Cincinnati office. This project takes that block out of Cincinnati, so it shows up as a loss in the markets the money was recorded in before.
 - **Recommendation: defend the 9 markets where First Financial is strong but losing share, starting with Jay, Fayette and Greene.** A next step is to look into why customers there moved to local community banks: pricing, products or branch service. The 6 "expand candidate" markets, led by Wayne, OH (+1.61 pts) and Cincinnati, are where the bank is gaining share but is not yet a top player.
 
 ## Question
@@ -56,8 +64,8 @@ Each of the 51 markets First Financial served goes into one group, based on how 
 - **Downloaded:** November 5, 2026, by `download.py`.
 - **Window:** 11 surveys, 2016–2026. This is longer than the 5 years or less the FDIC usually uses when it credits past years to today's owners, because the further back you go, the more the picture leans on the banks that survived ([FDIC Quarterly, 2019](https://www.fdic.gov/analysis/quarterly-banking-profile/fdic-quarterly/2019-vol13-1/fdic-v13n1-4q2018-article.pdf)). I kept 10 years so MainSource's years before the merger stay in.
 - **Scope:** every branch of every bank in each county where First Financial, or a bank that later merged into it, had a branch. That is 73,440 branch-years (one branch in one year) in 131 counties.
-- **Units:** SOD amounts are in thousands of dollars.
-- **Check:** First Financial Bank's 2026 SOD total ($17,801,476K) matches the deposits in its Call Report, the quarterly financial filing banks make to regulators.
+- **Units:** SOD amounts are in thousands of dollars ([SOD instructions](https://www.fdic.gov/bank-financial-reports/summary-deposits-reporting-instructions.pdf)).
+- **Check:** First Financial Bank's 2026 SOD total ($17,801,476K) matches the deposits in its Call Report, the quarterly financial filing banks make to regulators (FDIC BankFind financials, field `DEP`). Its 10-Q reports $17,583,229K; the 10-Q says intercompany accounts are eliminated in consolidation, which fits the gap, but no filing confirms that is the cause ([10-Q, June 30, 2026](https://www.sec.gov/Archives/edgar/data/708955/000070895526000144/ffbc-20260630.htm)).
 
 ## Cleaning Log
 
@@ -83,17 +91,17 @@ The fact table keeps three deposit columns, so every number can be shown both wa
 
 Each judgment call, and why.
 
-- **Markets are 2026 metro areas (MSAs, the Census Bureau's metro regions), or the county outside metro areas.** The Federal Reserve's banking markets mostly follow metro areas and rural county lines, but its official definitions are drawn by hand. This is a stand-in for Fed banking markets, not the official definition. Each county's market is fixed from 2026 for all years, because 8 of the 130 counties pulled changed MSA code during the window.
-- **Every past year is credited to the branch's 2026 owner.** A branch keeps its FDIC location number through mergers, so I follow each branch forward to its 2026 owner. That separates real wins and losses ("organic" change, the dashboard's "Branches First Financial owns today" line) from share bought through acquisitions. The FDIC's own market-share tool does this only for proposed deals and doesn't restate history, so this restatement is my own build.
-- **Closed branches are credited to their last owner, then carried forward through mergers.** I used 2,284 FDIC merger events from July 2016 to June 2026, so a closed MainSource branch counts as First Financial's.
+- **Analysis subject choice: First Financial Bancorp was picked over larger Cincinnati banks.** Fifth Third books $32.9B at its headquarters and U.S. Bank books $90.1B at its Cincinnati main office and is a national bank, so neither has a clean local footprint. LCNB is too small to compare across many markets.
+- **Markets are 2026 metro areas (MSAs, the federal government's official metro areas), or the county outside metro areas.** The Federal Reserve says "many geographic markets follow MSA definitions or rural county lines" ([Fed competitive-review FAQ](https://www.federalreserve.gov/frrs/guidance/frequently-asked-questions-regarding-the-competitive-review-process-for-bank-acquisitions-mergers-and-other-transactions.htm)), but its official market definitions are its own ([CASSIDI](https://cassidi.stlouisfed.org/help)). This is a stand-in for Fed banking markets, not the official definition. Each county's market is fixed from 2026 for all years, because 8 of the 130 counties pulled changed MSA code during the window.
+- **Every past year is credited to the branch's 2026 owner.** A branch keeps its FDIC location number through mergers ([SOD variable definitions](https://api.fdic.gov/banks/docs//sod_variables_definitions.csv), `UNINUMBR`), so I follow each branch forward to its 2026 owner. That separates real wins and losses ("organic" change, the dashboard's "Branches First Financial owns today" line) from share bought through acquisitions. The FDIC's own market-share tool does this only for proposed deals and doesn't restate history ([BankFind market share](https://banks.data.fdic.gov/bankfind-suite/SOD/marketShare)), so this restatement is my own build.
+- **Closed branches are credited to their last owner, then carried forward through mergers.** I used 2,284 FDIC merger events from July 2016 to June 2026 ([FDIC history events](https://api.fdic.gov/banks/docs//events_definitions.csv)), so a closed MainSource branch counts as First Financial's.
 - **Competitors are counted at holding-company level.** Two banks with the same parent are one competitor.
 - **Centrally booked deposits are capped or removed.** Some banks record deposits at one office instead of the branch near the customer, which makes them look huge in one market and shrinks everyone else's share. Two layers handle this:
   - **The BPI cap:** no branch can count for more than 3× the size of a branch bigger than 99% of the branches in its market that year. The cap applies only in markets where it kicks in for at least 9 of the 11 years: Canton, Chicago, Cincinnati, Cleveland and Columbus, OH. The method comes from the [Bank Policy Institute (2022)](https://bpi.com/wp-content/uploads/2022/07/Our-Search-for-an-Urban-Banking-Market-Made-Less-Competitive-by-a-Banking-Merger.pdf), a large-bank trade group that argues market concentration is overstated.
   - **A branch-by-branch review** for anything the cap misses (see Booking Review).
 - **First Financial's own Cincinnati booking office gets the same treatment as competitors'.** The cap trims Fifth Third's and U.S. Bank's Cincinnati headquarters records but barely touches First Financial's. So First Financial's Cincinnati booking records are held to set levels for 2016–2026. The Fed adjusts the bank under review only where it can adjust its competitors the same way ([Fed FAQ, Q23](https://www.federalreserve.gov/bankinforeg/competitive-effects-mergers-acquisitions-faqs.htm)).
-- **Alternative considered: the FDIC's September 22, 2026 proposed rule.** It would spread a bank's centrally booked deposits across markets by population ([Federal Register](https://www.federalregister.gov/documents/2026/09/22/2026-19308/merger-transactions)). I didn't use it because it's a proposal, it covers FDIC reviews only, and the Fed and DOJ haven't adopted it.
-- **Thrift deposits count at 100%.** Thrifts are savings banks and savings and loans. The Fed's first screen counts their deposits at 50%. Thrifts held only 4.6% of deposits in 2016 and 2.0% in 2026, so I didn't weight them. Four county markets have a high thrift share, where weighting would matter: Fulton, IN (48.0%), Greene, IN (47.5%), Van Wert, OH (44.5%) and Fayette, IN (35.2%).
-- **First Financial Bancorp was picked over larger Cincinnati banks.** Fifth Third books $32.9B at its headquarters and U.S. Bank operates nationally, so neither has a clean local footprint. LCNB is too small to compare across many markets.
+- **Alternative considered: the FDIC's September 22, 2026 proposed rule.** It would spread a bank's centrally booked deposits across markets by population ([Federal Register](https://www.federalregister.gov/documents/2026/09/22/2026-19308/merger-transactions)). I didn't use it because it's a proposal and it covers only the FDIC's own merger reviews.
+- **Thrift deposits count at 100%.** Thrifts are savings banks and savings and loans. The Fed's first screen counts their deposits at 50% ([Fed FAQ, Q4–Q5](https://www.federalreserve.gov/bankinforeg/competitive-effects-mergers-acquisitions-faqs.htm)). Thrifts held only 4.6% of deposits in 2016 and 2.0% in 2026, so I didn't weight them. Four county markets have a high thrift share, where weighting would matter: Fulton, IN (48.0%), Greene, IN (47.5%), Van Wert, OH (44.5%) and Fayette, IN (35.2%).
 
 ## Booking Review
 
@@ -113,13 +121,13 @@ A booking office is a branch where a bank records deposits from customers elsewh
 - **Excluded branches:** Rush, Decatur, Van Wert, Highland, Randolph, Wayne and Ripley. Each has a source in `data/reference/booking_overrides.csv` or `booking_review.csv`, for example the [Flagstar 8-K](https://www.sec.gov/Archives/edgar/data/1033012/000103301218000074/a8-kcurrentreport20180605.htm) for Rush.
 - **Manual caps** (`data/reference/booking_adjustments.csv`, 19 rows):
   - First Financial's Cincinnati booking offices.
-  - Merchants Bank's Carmel main office from 2020, which holds mortgage-servicer escrow deposits.
+  - Merchants Bank's Carmel main office from 2020, which holds mortgage-servicer escrow deposits ([FDIC CRA evaluation, 2022](https://crapes.fdic.gov/publish/2022/8056_221107.PDF)).
 - **Rush, shown both ways:** First Financial's Rush share rose 16.36 pts as reported but fell 5.25 pts adjusted. The reported gain mostly comes from a competitor's deposits leaving the county's books after Wells Fargo sold its branch in 2018.
 - **Van Wert and Decatur:** Van Wert flips from +9.92 as reported to −2.70 adjusted. Decatur's reported −27.57 shrinks to −6.25, because the reported figure includes the MainSource headquarters booking.
 
-## Data Gaps
+## Data Gaps, Assumptions, and Limitations:
 
-- **Banks choose how they assign deposits to branches.** The FDIC lets each bank use its own method, so branch figures are the bank's allocation, not a count of where customers live.
+- **Banks choose how they assign deposits to branches.** The FDIC lets each bank use its own method ([SOD instructions](https://www.fdic.gov/bank-financial-reports/summary-deposits-reporting-instructions.pdf)), so branch figures are the bank's allocation, not a count of where customers live.
 - **Credit unions aren't in the SOD.** They report to the NCUA, so their share is missing from every market ([Fed FAQ, Q18](https://www.federalreserve.gov/bankinforeg/competitive-effects-mergers-acquisitions-faqs.htm)).
 - **Branch-only sales and moves inside one bank aren't tracked.** Mergers are followed through FDIC history, but a single branch sold without a merger, or deposits moved between a bank's own branches, can still show up as a gain or loss.
 - **Rush, 2016–2017:** Wells Fargo branch 2882 fell from $197M to $115M before the 2018 sale. The cause is unknown.
@@ -128,11 +136,20 @@ A booking office is a branch where a bank records deposits from customers elsewh
 - **Truist, Louisville (branch 364386):** looks like booking but was left in. Removing it changes First Financial's Louisville result from −1.54 to −1.46 pts.
 - **First Financial's 2024 Cincinnati baseline is assumed.** The cap on its 4th & Vine office in Cincinnati holds 2025 at the 2024 level ($353.2M). No filing states the right level.
 - **The 2025–2026 losses outside Cincinnati are an inference.** First Financial's older offices outside Cincinnati fell $484.4M while the 4th & Vine office rose. I read that as deposits re-booked to Cincinnati, which explains the Indianapolis drop and the drops in other markets. No filing names the accounts.
-- **Two banks with similar names.** In Greene, IN, the top gainer is "First Financial Corporation" of Terre Haute, a different bank from First Financial Bancorp.
-- **Deals after the data:** First Financial agreed to buy Finward on July 21, 2026. That deal isn't in the June 30, 2026 data.
+- **Two banks with similar names.** In Greene, IN, the top gainer is "First Financial Corporation" of Terre Haute, a different bank from First Financial Bancorp (separate holding company IDs in the FDIC data).
+- **Deals after the data:** First Financial agreed to buy Finward on July 21, 2026 ([SEC exhibit](https://www.sec.gov/Archives/edgar/data/919864/000110465926085426/tm2620858d2_ex99-1.htm)). That deal isn't in the June 30, 2026 data.
 
+## How AI Was Used
+
+I used Claude (Anthropic's AI assistant) as a research and build partner. I made the calls; every decision and the reason for it went into a decisions log as the work moved along.
+- **Verifying the decisions:** before building the analysis, I had Claude check every methodology decision with a triangulated search. That ran as 5 decision questions, each searched separately, then 10 follow-up loops. Each loop took one open item, such as a single branch whose deposits jumped, and chased it to an answer or a documented "unknown". The run logged 104 sources and 27 claims tied to those sources. The checks corrected or added to several decisions, for example the metro-area code corrections, the 10-year window caveat, and the FDIC proposal listed as an alternative.
+- **The research skill:** Claude ran a skill based on daymade's [`deep-research`](https://github.com/daymade/claude-code-skills/tree/main/deep-research) (MIT license). I modified it into a version I call triangulated research by adding search rules that every search has to follow:
+  - Build queries from the question, never from the expected answer, and run at least one query aimed at disproving each claim that matters.
+  - Use the field's own vocabulary: plain, practitioner, and official terms.
+  - Come at every non-trivial question from at least three angles: official sources, practitioners, and independent or critical sources.
+  - Check a source's reputation before trusting it, using Mike Caulfield's SIFT method and Wineburg & McGrew's lateral-reading research (2019).
+  - Never claim something doesn't exist after one pass; report "my searches didn't find X" with the queries used.
 ## How to Run
-
 Both options build the same five tables in `data/clean/`. Install the packages first:
 
 ```
