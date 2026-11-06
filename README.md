@@ -6,6 +6,16 @@ This project answers that question for all 51 local markets the bank served from
 **Bottom Line:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, despite the markets growing. Its home market, Cincinnati, is holding steady. 
 
 **Recommendation:** Defend the 9 markets where it is still strong but slipping.
+## Contents
+- [Findings](#findings)
+- [How the Markets Are Grouped](#how-the-markets-are-grouped)
+- [Data](#data)
+- [Cleaning Log](#cleaning-log)
+- [Decisions](#decisions)
+- [Booking Review](#booking-review)
+- [Data Gaps, Assumptions, and Limitations](#data-gaps-assumptions-and-limitations)
+- [How Claude Was Used](#how-claude-was-used)
+- [How to Run](#how-to-run)
 
 **Dashboard:** [View the live report in Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjc3NTVhNTMtYzNlMS00MDIyLTkzYjMtMzhmZjg0YTdmNDRhIiwidCI6IjVhMmZlNzJiLTQ4YWEtNGZlZi1hZTg3LTMzM2EzNGQ3ZjUwZCJ9&pageName=6d47148dc90bbed8ac47). 
 - Source: `ffb_powerbi.pbip` in this repo.
