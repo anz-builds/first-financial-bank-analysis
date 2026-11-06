@@ -40,7 +40,7 @@ As *"Publish to Web"* doesn't support phone layouts ([Microsoft Learn](https://l
 ## Context/Definitions:
 - Share is First Financial's slice of all bank deposits in a market. Changes are in percentage points (pts): going from 10% to 9% is −1 pt. 
 - Every change covers 2016 to 2026 and counts only the branches First Financial owns today, so buying another bank doesn't count as a gain. 
-- Deposits that banks record at one office instead of where customers bank are adjusted out (see: [Decisions](#Decisions)). Figures without a link come from the FDIC data in this repo: `reports/tables/`, written by `analyze.py`.
+- Deposits that banks record at one office instead of where customers bank are adjusted out (see: [Decisions](#decisions)). Figures without a link come from the FDIC data in this repo: `reports/tables/`, written by `analyze.py`.
 
 ## Findings:
 - **The biggest losses are in the former MainSource markets, and they started after the 2018 merger.** MainSource was an Indiana bank First Financial bought in 2018 ([FFBC investor presentation, May 2026](https://www.sec.gov/Archives/edgar/data/708955/000070895526000098/a8k52226investpresent.htm)). Jay County, IN fell from 31.0% to 16.0% (−15.04 pts), Fayette, IN from 22.4% to 14.0% (−8.41) and Greene, IN from 18.8% to 11.1% (−7.66). All three are markets where First Financial still ranks in the top 5.
