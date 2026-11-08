@@ -73,6 +73,11 @@ def main():
     say(2, f"Counties: {len(dim_county)} ({fallback} mapped from a year before {LAST_YEAR}); "
            f"markets: {len(dim_market)} ({(dim_market.market_type == 'MSA').sum()} MSA, "
            f"{(dim_market.market_type == 'County').sum()} county)")
+    codes = raw.groupby("STCNTYBR")["MSABR"].apply(set)
+    switched = int(codes.map(lambda c: len(c - {0}) > 1).sum())
+    in_out = int(codes.map(lambda c: 0 in c and len(c - {0}) == 1).sum())
+    say(2, f"Counties whose MSA status changed during the window: {switched + in_out} "
+           f"({switched} switched metro code, {in_out} moved into or out of a metro area)")
 
     # Step 3: every bank -> the bank holding it in 2026, following merger
     # chains to their end (D6).

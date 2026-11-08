@@ -3,7 +3,7 @@
 
 This project answers that question for all 51 local markets the bank served from 2016 to 2026, using FDIC branch deposit data and a Power BI report.
 
-**Bottom Line:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, despite the markets growing. Its home market, Cincinnati, is holding steady. 
+**Bottom Line:** First Financial is losing ground in the small Indiana towns it gained when it bought MainSource Bank in 2018, mostly to local community banks, despite the markets growing. Its home market, Cincinnati, is gaining slightly (+0.43 pts). 
 
 **Recommendation:** Defend the 9 markets where it is still strong but slipping.
 
@@ -40,13 +40,13 @@ As *"Publish to Web"* doesn't support phone layouts ([Microsoft Learn](https://l
 ## Context/Definitions:
 - Share is First Financial's slice of all bank deposits in a market. Changes are in percentage points (pts): going from 10% to 9% is −1 pt. 
 - Every change covers 2016 to 2026 and counts only the branches First Financial owns today, so buying another bank doesn't count as a gain. 
-- Deposits that banks record at one office instead of where customers bank are adjusted out (see: [Decisions](#decisions)). Figures without a link come from the FDIC data in this repo: `reports/tables/`, written by `analyze.py`.
+- Deposits that banks record at one office instead of where customers bank are adjusted out (see: [Decisions](#Decisions)). Figures without a link come from the FDIC data in this repo: `reports/tables/`, written by `analyze.py`.
 
 ## Findings:
 - **The biggest losses are in the former MainSource markets, and they started after the 2018 merger.** MainSource was an Indiana bank First Financial bought in 2018 ([FFBC investor presentation, May 2026](https://www.sec.gov/Archives/edgar/data/708955/000070895526000098/a8k52226investpresent.htm)). Jay County, IN fell from 31.0% to 16.0% (−15.04 pts), Fayette, IN from 22.4% to 14.0% (−8.41) and Greene, IN from 18.8% to 11.1% (−7.66). All three are markets where First Financial still ranks in the top 5.
-- **Local community banks took that share, not the big national banks.** First Berne gained 15.6 pts in Jay. Owen Financial (+10.0) and Farmers & Mechanics (+9.4) gained in Greene, and Union Savings (+5.8) and FCN (+4.3) in Fayette. First Farmers gained 7.4 in Wabash, IN. In Decatur, IN, Napoleon Bancorp gained 13.6 and Bancorp of Southern Indiana, which had no deposits there in 2016, now holds 12.3%.
+- **Local community banks took that share, not the big national banks.** First Berne gained 15.6 pts in Jay. In Greene, the top gainer was First Financial Corporation of Terre Haute (+11.0), a different company from First Financial Bancorp, followed by Owen Financial (+10.0) and Farmers & Mechanics (+9.4). In Fayette, Union Savings (+5.8) and FCN (+4.3) gained. First Farmers gained 7.4 in Wabash, IN. In Decatur, IN, Napoleon Bancorp gained 13.6 and Bancorp of Southern Indiana, which had no deposits there in 2016, now holds 12.3%.
 - **These markets grew while First Financial shrank.** Jay's total deposits grew 78% while First Financial's fell 8%. In Louisville, the market grew 87% and First Financial's deposits fell 22%. First Financial is losing ground in growing markets, not in shrinking towns.
-- **Cincinnati, the home market, is roughly holding.** First Financial went from 6.51% to 6.94% (+0.43 pts) and ranks 5th. As reported to the FDIC, the gain looks bigger (+0.96), because the bank books deposits from other markets at its Cincinnati offices.
+- **Cincinnati, the home market, is gaining slightly.** First Financial went from 6.51% to 6.94% (+0.43 pts) and ranks 5th. As reported to the FDIC, the gain looks bigger (+0.96), because the bank books deposits from other markets at its Cincinnati offices.
 - **Every exit was a branch closure, not a sale.** First Financial left 9 markets by closing 10 branches. Five of the exits came right after 2017, around the MainSource merger.
 - **The 2025–2026 drop in Cleveland and Akron is mostly a bookkeeping move, not customers leaving.** After First Financial bought Westfield Bank, an Ohio bank (deal closed November 3, 2025; [8-K](https://www.sec.gov/Archives/edgar/data/708955/000070895525000105/ex991westfieldclosingannou.htm)), Westfield's deposits were moved onto the books of a Cincinnati office. This project takes that block out of Cincinnati, so it shows up as a loss in the markets the money was recorded in before.
 - **Recommendation: defend the 9 markets where First Financial is strong but losing share, starting with Jay, Fayette and Greene.** A next step is to look into why customers there moved to local community banks: pricing, products or branch service. The 6 "expand candidate" markets, led by Wayne, OH (+1.61 pts) and Cincinnati, are where the bank is gaining share but is not yet a top player.
@@ -87,7 +87,7 @@ Row counts printed by `clean.py`.
 | Step | What happens | Result |
 |---|---|---|
 | 1 | Load raw branch-year rows from 11 yearly files | 73,440 rows |
-| 2 | Assign each county to a market | 131 counties; 56 markets (17 metro, 39 county) |
+| 2 | Assign each county to a market | 131 counties; 56 markets pulled (17 metro, 39 county). 5 have no First Financial branch in any year, so 51 are analyzed. 23 counties changed MSA status during the window |
 | 3 | Find banks that merged into another bank by 2026 | 562 banks; 142 merged |
 | 4 | Credit every row to the branch's 2026 owner | 62,093 open in 2026; 895 via merger chain; 10,081 closed, bank still operating; 371 closed, no successor in data |
 | 5 | Build the owner list | 581 owners (1 focus bank) |
@@ -104,7 +104,7 @@ The fact table keeps three deposit columns, so every number can be shown both wa
 
 All judgements calls below and why:
 - **Analysis subject choice: First Financial Bancorp was picked over larger Cincinnati banks.** Fifth Third books $32.9B at its headquarters and U.S. Bank books $90.1B at its Cincinnati main office and is a national bank, so neither has a clean local footprint. LCNB is too small to compare across many markets.
-- **Markets are 2026 metro areas (MSAs, the federal government's official metro areas), or the county outside metro areas.** The Federal Reserve says "many geographic markets follow MSA definitions or rural county lines" ([Fed competitive-review FAQ](https://www.federalreserve.gov/frrs/guidance/frequently-asked-questions-regarding-the-competitive-review-process-for-bank-acquisitions-mergers-and-other-transactions.htm)), but its official market definitions are its own ([CASSIDI](https://cassidi.stlouisfed.org/help)). This is a stand-in for Fed banking markets, not the official definition. Each county's market is fixed from 2026 for all years, because 8 of the 130 counties pulled changed MSA code during the window.
+- **Markets are 2026 metro areas (MSAs, the federal government's official metro areas), or the county outside metro areas.** The Federal Reserve says "many geographic markets follow MSA definitions or rural county lines" ([Fed competitive-review FAQ](https://www.federalreserve.gov/frrs/guidance/frequently-asked-questions-regarding-the-competitive-review-process-for-bank-acquisitions-mergers-and-other-transactions.htm)), but its official market definitions are its own ([CASSIDI](https://cassidi.stlouisfed.org/help)). This is a stand-in for Fed banking markets, not the official definition. Each county's market is fixed from 2026 for all years, because 23 of the 131 counties pulled changed MSA status during the window: 10 switched metro code and 13 moved into or out of a metro area.
 - **Every past year is credited to the branch's 2026 owner.** A branch keeps its FDIC location number through mergers ([SOD variable definitions](https://api.fdic.gov/banks/docs//sod_variables_definitions.csv), `UNINUMBR`), so I follow each branch forward to its 2026 owner. That separates real wins and losses ("organic" change, the dashboard's "Branches First Financial owns today" line) from share bought through acquisitions. The FDIC's own market-share tool does this only for proposed deals and doesn't restate history ([BankFind market share](https://banks.data.fdic.gov/bankfind-suite/SOD/marketShare)), so this restatement is my own build.
 - **Closed branches are credited to their last owner, then carried forward through mergers.** I used 2,284 FDIC merger events from July 2016 to June 2026 ([FDIC history events](https://api.fdic.gov/banks/docs//events_definitions.csv)), so a closed MainSource branch counts as First Financial's.
 - **Competitors are counted at holding-company level.** Two banks with the same parent are one competitor.
