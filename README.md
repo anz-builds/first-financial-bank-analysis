@@ -144,7 +144,7 @@ A booking office is a branch where a bank records deposits from customers elsewh
 ## Data Gaps, Assumptions, and Limitations:
 
 - **Banks choose how they assign deposits to branches.** The FDIC lets each bank use its own method ([SOD instructions](https://www.fdic.gov/bank-financial-reports/summary-deposits-reporting-instructions.pdf)), so branch figures are the bank's allocation, not a count of where customers live.
-- **Credit unions aren't in the SOD.** They report to the NCUA, so their share is missing from every market ([FinObservatory methodology](https://finobservatory.org/deposits/county/methodology)).
+- **Credit unions aren't in the SOD.** They report to the NCUA, so their share is missing from every market ([SOD instructions](https://www.fdic.gov/bank-financial-reports/summary-deposits-reporting-instructions.pdf); [NCUA Call Report instructions](https://ncua.gov/files/publications/regulations/call-report-instructions-september-2025.pdf)).
 - **Branch-only sales and moves inside one bank aren't tracked.** Mergers are followed through FDIC history, but a single branch sold without a merger, or deposits moved between a bank's own branches, can still show up as a gain or loss.
 - **Rush, 2016–2017:** Wells Fargo branch 2882 fell from $197M to $115M before the 2018 sale. The cause is unknown.
 - **U.S. Bank, Wayne County, IN (branch 203533):** jumped from $22M to $476M in 2024. It was reviewed and kept, and it moves First Financial's change by 0.75 pts.
