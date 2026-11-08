@@ -290,8 +290,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Dark pink is the answer: did today''s First Financial branches gain or lose share? Light pink jumps are acquisitions. Grey is before booking adjustments.'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_branch_year"
+                    }
+                  },
+                  "Property": "Share Trend Subtitle"
                 }
               }
             },

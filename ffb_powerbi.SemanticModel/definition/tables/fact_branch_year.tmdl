@@ -212,6 +212,10 @@ table fact_branch_year
 	measure 'Share Trend Title' = "First Financial Deposit Share by Year, 2016–2026: " & SELECTEDVALUE ( dim_market[market_name], "All Markets Combined" )
 		lineageTag: 3464bcfe-7981-4e2f-920f-25e1126827b2
 
+	/// Page 2 share trend subtitle; adds a Westfield note for markets First Financial owned only in 2026.
+	measure 'Share Trend Subtitle' = IF ( SELECTEDVALUE ( dim_market[market_id] ) IN { "MSA-17410", "MSA-10420", "MSA-15940", "CTY-39169" }, "Westfield's market until 2026: the line before 2026 is Westfield's, and the 2026 change includes deposits moved to a Cincinnati office.", "Dark pink is the answer: did today's First Financial branches gain or lose share? Light pink jumps are acquisitions. Grey is before booking adjustments." )
+		lineageTag: 8f664165-ccbd-4447-a373-a0c2fd8ddebb
+
 	/// Dynamic title for the Page 2 competitor gains chart; names the selected market.
 	measure 'Competitor Gains Title' = "Who Gained Share, 2016–2026: " & SELECTEDVALUE ( dim_market[market_name], "All Markets Combined" )
 		lineageTag: 8f5056ae-8ace-47fb-aee1-5883c0649c9f
